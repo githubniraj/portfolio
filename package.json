@@ -1,0 +1,32 @@
+{
+  "name": "nn-portfolio",
+  "version": "1.0.0",
+  "description": "This repo contains samples of various I have created.",
+  "author": "Nolin Naidoo | nolin.naidoo@me.com",
+  "keywords": "",
+  "license": "ISC",
+  "private": true,
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/NNaidoo/samples.git"
+  },
+  "bugs": {
+    "url": "https://github.com/NNaidoo/samples/issues"
+  },
+  "homepage": "https://github.com/NNaidoo/samples#readme",
+  "scripts": {
+    "lint": "npm run lint --fix"
+  },
+  "dependencies": {
+    "babel-core": "^6.24.1",
+    "eslint": "^3.19.0",
+    "eslint-config-airbnb": "^14.1.0",
+    "eslint-config-prettier": "^1.5.0",
+    "eslint-loader": "^1.7.0",
+    "eslint-plugin-import": "^2.2.0",
+    "eslint-plugin-jsx-a11y": "^4.0.0",
+    "eslint-plugin-prettier": "^2.0.1",
+    "eslint-plugin-react": "^6.10.3",
+    "prettier": "^0.22.0"
+  }
+}

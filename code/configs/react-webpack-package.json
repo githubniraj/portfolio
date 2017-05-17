@@ -1,0 +1,85 @@
+{
+  "private": true,
+  "scripts": {
+    "book:copy": "node src/main/js/docs/.setup.docs.js",
+    "book:install": "gitbook install target/book",
+    "book:prepare": "npm run book:copy && npm run book:install",
+    "book:serve": "gitbook serve target/book target/_book --open",
+    "book": "npm run book:prepare && npm run book:serve",
+    "prebuild": "npm install && npm run lint",
+    "build": "better-npm-run build",
+    "clean": "rimraf .nyc_output coverage typings",
+    "dependencies": "babel-node src/test/resources/js/analyzeDependencies.js",
+    "dev": "better-npm-run dev",
+    "dev:mock": "better-npm-run dev:mock",
+    "doc": "jsdoc --recurse src/main/js --destination target/jsdoc",
+    "lint": "eslint src",
+    "lint:fix": "npm run lint -- --fix",
+    "lint:watch": "chokidar --initial --silent src/main/js src/test/js -c 'npm run lint:quiet -s'",
+    "lint:watch:test": "chokidar --initial --silent src/test/js -c 'npm run lint:quiet:test -s'",
+    "lint:quiet": "eslint src || true",
+    "lint:quiet:test": "eslint src/test/js || true",
+    "markdown": "node src/test/js/.markdown.js",
+    "mock:convert": "babel-node src/test/resources/js/convertIntlMock",
+    "npm": "node ./.npm",
+    "start": "concurrently --raw \"npm run lint:watch:test -s\" \"npm run test:watch -s\" \"npm run dev -s\"",
+    "test": "better-npm-run test",
+    "test:debug": "node-debug --no-preload --debug-brk=false node_modules/mocha/bin/_mocha --require babel-register --require ignore-styles src/test/js/.setup.js --recursive src/test/js --timeout 0",
+    "test:watch": "better-npm-run test:watch",
+    "watch": "concurrently --raw \"npm run lint:watch -s\" \"npm run test:watch -s\""
+  },
+  "betterScripts": {
+    "build": {
+      "command": "webpack",
+      "env": {
+        "NODE_ENV": "production"
+      }
+    },
+    "dev": {
+      "command": "webpack-dev-server",
+      "env": {
+        "NODE_ENV": "development"
+      }
+    },
+    "dev:mock": {
+      "command": "npm run dev",
+      "env": {
+        "DATA_SOURCE": "mock"
+      }
+    },
+    "test": {
+      "command": "nyc --all mocha src/test/js/.setup.js --recursive src/test/js --reporter mocha-jenkins-reporter",
+      "env": {
+        "NODE_ENV": "test",
+        "JUNIT_REPORT_PATH": "target/test-report.xml"
+      }
+    },
+    "test:watch": {
+      "command": "mocha --watch --reporter min --require babel-register --require ignore-styles src/test/js/.setup.js --recursive src/test/js",
+      "env": {
+        "NODE_ENV": "test"
+      }
+    }
+  },
+  "nyc": {
+    "require": [
+      "babel-register",
+      "ignore-styles"
+    ],
+    "include": [
+      "src/main/js/**"
+    ],
+    "exclude": [
+      "node_modules",
+      "target"
+    ],
+    "tempDirectory": "target/.nyc_output",
+    "report-dir": "target/coverage",
+    "sourceMap": false,
+    "instrument": false,
+    "reporter": [
+      "text",
+      "html"
+    ]
+  }
+}

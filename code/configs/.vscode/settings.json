@@ -1,0 +1,35 @@
+// Place your settings in this file to overwrite default and user settings.
+{
+  // Required
+  "editor.tabSize": 2,
+  "editor.detectIndentation": false,
+  "editor.insertSpaces": true,
+  "javascript.validate.enable": false,
+  "files.eol": "\n",
+  "files.insertFinalNewline": false,
+  "extensions.autoUpdate": true,
+  // Path Intellisence
+  "path-intellisense.mappings": {
+    "app": "${workspaceRoot}/src/js",
+    "app/test": "${workspaceRoot}/test/js"
+  },
+  // Recommended
+  "eslint.autoFixOnSave": true,
+  "files.autoSave": "onFocusChange",
+  "files.exclude": {
+    ".vscode": true,
+    "etc": true,
+    "node*": true,
+    "target": true
+  },
+  "search.exclude": {
+    ".vscode": true,
+    "etc": true,
+    "node*": true,
+    "target": true
+  },
+  "editor.rulers": [
+    100
+  ],
+  "explorer.openEditors.visible": 0
+}
